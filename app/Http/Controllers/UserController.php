@@ -10,7 +10,11 @@ class UserController extends Controller
 {
     public function index()
     {
-        $user = UserModel::where('username', 'managers')->firstOrFail();
+        $user = UserModel::where('level_id', 2)->count();
+        // dd($user);
+        return view('user', ['data' => $user]);
+
+        /* $user = UserModel::where('username', 'managers')->firstOrFail();
         return view('user', ['data' => $user]);
 
         /* $data = [
@@ -19,7 +23,7 @@ class UserController extends Controller
             'password' => Hash::make('12345'),
             'level_id' => 4
         ];
-        UserModel::insert($data); */
+        UserModel::insert($data); 
 
         /* $data = [
             'nama' => 'Pelanggan Pertama',
@@ -27,7 +31,7 @@ class UserController extends Controller
         UserModel::where('username', 'customer-1')->update($data);
 
         $user = UserModel::all(); 
-        return view('user', ['data' => $user]); */
+        return view('user', ['data' => $user]); 
 
         /* $data = [
             'level_id' => 2,
