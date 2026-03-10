@@ -10,6 +10,10 @@ class UserController extends Controller
 {
     public function index()
     {
+        $user = UserModel::findOr(20, ['username', 'nama'], function() {
+            abort(404);
+        }); 
+        return view('user', ['data' => $user]);
 
         /* $data = [
             'username' => 'customer-1',
@@ -27,7 +31,7 @@ class UserController extends Controller
         $user = UserModel::all(); 
         return view('user', ['data' => $user]); */
 
-        $data = [
+        /* $data = [
             'level_id' => 2,
             'username' => 'manager_tiga',
             'nama' => 'Manager 23',
@@ -36,6 +40,6 @@ class UserController extends Controller
         UserModel::create($data); 
 
         $user = UserModel::all();
-        return view('user', ['data' => $user]);
+        return view('user', ['data' => $user]); */
     }
 }
